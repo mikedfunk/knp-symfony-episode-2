@@ -1,0 +1,18 @@
+<h1>register</h1>
+
+{# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }} #}
+{{ form_start(form) }}
+{# the entire form #}
+{# {{ form_widget(form) }} #}
+{{ form_errors(form) }}
+<p>
+{{ form_errors(form.username) }}
+{{ form_label(form.username) }}
+{{ form_widget(form.username, {'attr': {'class': 'whateverClass'}}) }}
+</p>
+{{ form_row(form.email) }}
+{{ form_row(form.plainPassword.first, {'label': 'Password'}) }}
+{{ form_row(form.plainPassword.second, {'label': 'Confirm Password'}) }}
+{{ form_rest(form) }}
+<input type="submit" value="Submit" />
+{{ form_end(form) }}

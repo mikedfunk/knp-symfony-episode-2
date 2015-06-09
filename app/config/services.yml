@@ -1,0 +1,34 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    user_bundle.controller.security_controller:
+        class: UserBundle\Controller\SecurityController
+        arguments: ["@security.authentication_utils"]
+
+    user_bundle.entity.user_repository:
+        class: UserBundle\Entity\UserRepository
+        factory_service: doctrine
+        factory_method: getRepository
+        arguments: ["UserBundle:User"]
+
+    app_bundle.controller.default_controller:
+        class: AppBundle\Controller\DefaultController
+        arguments: ["@user_bundle.entity.user_repository"]
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user_bundle.controller.register_controller:
+        class: UserBundle\Controller\RegisterController
+        arguments: 
+            - "@security.encoder_factory"
+            - "@doctrine.orm.default_entity_manager"
+            - "@security.context"
+        calls:
+            - [setContainer, ["@service_container"]]
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
