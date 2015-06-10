@@ -1,5 +1,14 @@
 These are notes from [KNP University: Starting in Symfony2: episode 2](https://knpuniversity.com/screencast/symfony2-ep2/). This repo and the notes below are pretty messy but I'm keeping it around for later reference.
 
+## To get this working
+
+* [get composer](http://getcomposer.org)
+* `composer install`
+* edit `app/config/parameters.yml` with your database config
+* `php app/console doctrine:schema:update --force`
+
+*Note: I didn't do episode 1 so it's not exactly like the finished product in the video. the homepage, login, register, and logout should work though.*
+
 # KNP University notes
 
 * auth is all done in `app/config/security.yml` which is included from app/config/config.yml
